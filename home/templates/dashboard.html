@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Quản Lý Nhà Hàng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --sidebar-w: 240px;
+            --bg: #eef5f9; 
+            --white: #ffffff;
+            --primary: #0077b6; 
+            --primary-dark: #023e8a; 
+            --green: #059669; 
+            --green-bg: #d1fae5;
+            --orange: #f97316; 
+            --orange-bg: #ffedd5;
+            --blue: #0ea5e9; 
+            --blue-bg: #e0f2fe;
+            --star: #fbbf24;
+            --text: #0f172a; 
+            --muted: #64748b;
+            --border: #cbd5e1;
+            --sidebar-bg: #ffffff;
+            --active-nav: #e0f2fe; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ── Sidebar (Giữ nguyên y hệt của bạn) ── */
+        .sidebar {
+            width: var(--sidebar-w);
+            background: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+            border-right: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .brand {
+            display: flex; align-items: center; gap: 0.6rem; padding: 0.25rem 0.75rem 1.75rem;
+        }
+        .brand-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, #0077b6, #48cae4);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: white;
+        }
+        .brand-name { font-weight: 700; font-size: 1.15rem; color: var(--text); letter-spacing: -0.3px; }
+
+        .nav-section { flex: 1; }
+        .nav-item {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.9rem;
+            border-radius: 10px; color: var(--muted); font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; transition: all 0.15s; text-decoration: none; margin-bottom: 2px;
+        }
+        .nav-item:hover { background: var(--bg); color: var(--text); }
+        .nav-item.active { background: var(--active-nav); color: var(--primary-dark); }
+        .nav-item i { font-size: 1.1rem; width: 20px; text-align: center; }
+
+        .sidebar-footer { border-top: 1px solid var(--border); padding-top: 1rem; }
+        .user-info { display: flex; align-items: center; gap: 0.7rem; padding: 0.5rem 0.9rem; border-radius: 10px; }
+        .avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 600; font-size: 0.85rem; flex-shrink: 0;
+        }
+        .user-name { font-weight: 600; font-size: 0.85rem; }
+        .user-role { font-size: 0.75rem; color: var(--muted); }
+        .logout-btn {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.9rem;
+            border-radius: 10px; color: var(--muted); font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; transition: all 0.15s; text-decoration: none; margin-top: 2px;
+        }
+        .logout-btn:hover { background: #fff0f0; color: #e05c5c; }
+
+        /* ── Main Content Area ── */
+        .main {
+            flex: 1; display: flex; flex-direction: column; overflow: hidden;
+        }
+        .topbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.5rem 2rem 1rem; background: var(--bg);
+        }
+        .topbar h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); margin: 0; }
+        .topbar-date { font-size: 0.9rem; color: var(--muted); font-weight: 500; }
+
+        /* Khung cuộn nội dung Dashboard */
+        .dashboard-content {
+            flex: 1; overflow-y: auto; padding: 0 2rem 2rem;
+        }
+        .dashboard-content::-webkit-scrollbar { width: 6px; }
+        .dashboard-content::-webkit-scrollbar-track { background: transparent; }
+        .dashboard-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+        /* Thẻ KPI (4 ô chỉ số) */
+        .kpi-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: transform 0.2s;
+            height: 100%;
+        }
+        .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,119,182,0.08); }
+        
+        .kpi-icon {
+            width: 55px; height: 55px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .icon-revenue { background: var(--blue-bg); color: var(--primary); }
+        .icon-orders { background: var(--orange-bg); color: var(--orange); }
+        .icon-tables { background: var(--green-bg); color: var(--green); }
+        .icon-rating { background: #fef3c7; color: var(--star); }
+
+        .kpi-title { font-size: 0.85rem; color: var(--muted); font-weight: 600; text-transform: uppercase; margin-bottom: 0.3rem;}
+        .kpi-value { font-size: 1.4rem; font-weight: 800; color: var(--text); }
+        .kpi-subtext { font-size: 0.75rem; color: var(--green); font-weight: 600; margin-top: 0.2rem;}
+
+        /* Bảng đánh giá */
+        .content-box {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            margin-top: 1.5rem;
+        }
+        .box-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--text); }
+        
+        .review-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .review-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .reviewer-name { font-weight: 700; font-size: 0.9rem; }
+        .review-stars { color: var(--star); font-size: 0.85rem; }
+        .review-text { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon">🍽</div>
+        <span class="brand-name">NhàHàng</span>
+    </div>
+
+    <nav class="nav-section">
+        <a href="/dashboard/" class="nav-item active">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+        </a>
+        <a href="#" class="nav-item">
+            <i class="bi bi-box-seam"></i> Kho Hàng
+        </a>
+        <a href="/home/" class="nav-item">
+            <i class="bi bi-receipt"></i> Đơn Hàng
+        </a>
+        <a href="#" class="nav-item">
+            <i class="bi bi-grid"></i> Bàn Ăn
+        </a>
+        <a href="#" class="nav-item">
+            <i class="bi bi-people"></i> Menu
+        </a>
+        <a href="/admin/" class="nav-item">
+            <i class="bi bi-gear"></i> Cài Đặt
+        </a>
+        <a href="/" class="nav-item">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="user-info">
+            <div class="avatar">GS</div>
+            <div>
+                <div class="user-name">Gladina Samantha</div>
+                <div class="user-role">Waiters</div>
+            </div>
+        </div>
+        <a href="#" class="logout-btn">
+            <i class="bi bi-box-arrow-right"></i> Đăng Xuất
+        </a>
+    </div>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <h1>Dashboard</h1>
+        <span class="topbar-date" id="current-date"></span>
+    </div>
+
+    <div class="dashboard-content">
+        <div class="row g-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-revenue"><i class="bi bi-wallet2"></i></div>
+                    <div>
+                        <div class="kpi-title">Doanh Thu Tháng</div>
+                        <div class="kpi-value">{{ total_revenue|floatformat:0 }} đ</div>
+                        <div class="kpi-subtext"><i class="bi bi-arrow-up-short"></i> +12% so với tháng trước</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-orders"><i class="bi bi-receipt-cutoff"></i></div>
+                    <div>
+                        <div class="kpi-title">Số Đơn Hàng</div>
+                        <div class="kpi-value">{{ total_orders }}</div>
+                        <div class="kpi-subtext text-muted" style="color: var(--muted) !important;">Trong tháng này</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-tables"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+                    <div>
+                        <div class="kpi-title">Trạng Thái Bàn</div>
+                        <div class="kpi-value">{{ occupied_tables }} / {{ total_tables }} Bàn</div>
+                        <div class="kpi-subtext text-muted" style="color: var(--muted) !important;">Đang phục vụ khách</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <!-- <div class="kpi-card">
+                    <div class="kpi-icon icon-rating"><i class="bi bi-star-fill"></i></div>
+                    <div>
+                        <div class="kpi-title">Đánh Giá (TB)</div>
+                        <div class="kpi-value">4.8 / 5.0</div>
+                        <div class="kpi-subtext"><i class="bi bi-arrow-up-short"></i> Dựa trên 128 lượt vote</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-8">
+                <div class="content-box h-100">
+                    <div class="box-title d-flex justify-content-between align-items-center">
+                        <span>Top Món Bán Chạy Trong Tháng</span>
+                        <button class="btn btn-sm btn-outline-primary" style="font-size: 0.8rem; font-weight: 600;">Xem chi tiết</button>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-borderless align-middle mb-0">
+                            <thead style="border-bottom: 2px solid var(--border);">
+                                <tr>
+                                    <th class="text-muted pb-3" style="font-size: 0.75rem; text-transform: uppercase;">Xếp Hạng</th>
+                                    <th class="text-muted pb-3" style="font-size: 0.75rem; text-transform: uppercase;">Tên Món Hải Sản</th>
+                                    <th class="text-muted text-center pb-3" style="font-size: 0.75rem; text-transform: uppercase;">SL Đã Bán</th>
+                                    <th class="text-muted text-end pb-3" style="font-size: 0.75rem; text-transform: uppercase;">Doanh Thu Mang Lại</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr style="border-bottom: 1px solid var(--bg); transition: background 0.2s;">
+                                    <td class="py-3" style="width: 15%;">
+                                        <span class="badge rounded-circle p-2" style="background-color: var(--primary); color: #fff; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;">
+                                            [LOGIC: SỐ THỨ TỰ]
+                                        </span>
+                                    </td>
+                                    <td class="fw-bold" style="color: var(--text);">
+                                        [LOGIC: TÊN MÓN ĂN]
+                                    </td>
+                                    <td class="text-center fw-semibold" style="color: var(--primary);">
+                                        [LOGIC: TỔNG SỐ LƯỢNG] <span style="font-size: 0.8rem; color: var(--muted); font-weight: normal;">phần</span>
+                                    </td>
+                                    <td class="text-end fw-bold">
+                                        [LOGIC: TỔNG DOANH THU]
+                                    </td>
+                                </tr>
+        
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        [LOGIC: THÔNG BÁO CHƯA CÓ DỮ LIỆU TRONG THÁNG]
+                                    </td>
+                                </tr>
+        
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Lấy ngày hiện tại hiển thị trên Topbar
+    const d = new Date();
+    document.getElementById('current-date').textContent =
+        d.toLocaleDateString('vi-VN', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    
+</script>
+</body>
+</html>

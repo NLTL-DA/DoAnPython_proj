@@ -1,0 +1,962 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$870000$randomsalt01$dUGFqAWSFyaG0L0dVFGDVCVvtmtM/HQ01pLNOnC0jNo=",
+      "email": "admin@example.com",
+      "first_name": "Quản",
+      "last_name": "Lý",
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "date_joined": "2026-01-01T08:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "bep_truong",
+      "password": "pbkdf2_sha256$870000$randomsalt01$dUGFqAWSFyaG0L0dVFGDVCVvtmtM/HQ01pLNOnC0jNo=",
+      "email": "chef@example.com",
+      "first_name": "Minh",
+      "last_name": "Bếp",
+      "is_staff": true,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2026-01-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "phuc_vu_1",
+      "password": "pbkdf2_sha256$870000$randomsalt01$dUGFqAWSFyaG0L0dVFGDVCVvtmtM/HQ01pLNOnC0jNo=",
+      "email": "phucvu1@example.com",
+      "first_name": "Lan",
+      "last_name": "Nguyễn",
+      "is_staff": true,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2026-01-01T10:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "username": "phuc_vu_2",
+      "password": "pbkdf2_sha256$870000$randomsalt01$dUGFqAWSFyaG0L0dVFGDVCVvtmtM/HQ01pLNOnC0jNo=",
+      "email": "phucvu2@example.com",
+      "first_name": "Hùng",
+      "last_name": "Trần",
+      "is_staff": true,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2026-01-02T10:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "username": "thu_ngan",
+      "password": "pbkdf2_sha256$870000$randomsalt01$dUGFqAWSFyaG0L0dVFGDVCVvtmtM/HQ01pLNOnC0jNo=",
+      "email": "cashier@example.com",
+      "first_name": "Mai",
+      "last_name": "Lê",
+      "is_staff": true,
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2026-01-02T11:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "staff.staff",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "role": "manager",
+      "phone": "0901000001",
+      "address": "15 Trần Hưng Đạo, Q1, TP.HCM",
+      "salary": "18000000",
+      "hire_date": "2026-01-01",
+      "is_active": true
+    }
+  },
+  {
+    "model": "staff.staff",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "role": "chef",
+      "phone": "0901000002",
+      "address": "88 Nguyễn Trãi, Q5, TP.HCM",
+      "salary": "13000000",
+      "hire_date": "2026-01-01",
+      "is_active": true
+    }
+  },
+  {
+    "model": "staff.staff",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "role": "waiter",
+      "phone": "0901000003",
+      "address": "22 Lê Văn Sỹ, Q3, TP.HCM",
+      "salary": "8000000",
+      "hire_date": "2026-01-01",
+      "is_active": true
+    }
+  },
+  {
+    "model": "staff.staff",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "role": "waiter",
+      "phone": "0901000004",
+      "address": "5 Đinh Bộ Lĩnh, Bình Thạnh, TP.HCM",
+      "salary": "8000000",
+      "hire_date": "2026-01-02",
+      "is_active": true
+    }
+  },
+  {
+    "model": "staff.staff",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "role": "cashier",
+      "phone": "0901000005",
+      "address": "101 Phan Xích Long, Phú Nhuận, TP.HCM",
+      "salary": "9000000",
+      "hire_date": "2026-01-02",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": { "name": "Khai vị", "description": "Món nhẹ đầu bữa", "created_at": "2026-01-02T08:00:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": { "name": "Hải sản tươi", "description": "Đánh bắt trong ngày", "created_at": "2026-01-02T08:01:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": { "name": "Món nướng", "description": "Nướng than hồng", "created_at": "2026-01-02T08:02:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": { "name": "Lẩu & Súp", "description": "Nóng hổi", "created_at": "2026-01-02T08:03:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": { "name": "Món xào", "description": "Đậm đà", "created_at": "2026-01-02T08:04:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": { "name": "Gỏi & Salad", "description": "Tươi mát", "created_at": "2026-01-02T08:05:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": { "name": "Cơm & Mì", "description": "Món chắc bụng", "created_at": "2026-01-02T08:06:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": { "name": "Đồ uống", "description": "Giải khát", "created_at": "2026-01-02T08:07:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 9,
+    "fields": { "name": "Tráng miệng", "description": "Ngọt ngào", "created_at": "2026-01-02T08:08:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 10,
+    "fields": { "name": "Rượu vang", "description": "Thượng hạng", "created_at": "2026-01-02T08:09:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 11,
+    "fields": { "name": "Bia", "description": "Lạnh", "created_at": "2026-01-02T08:10:00Z" }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 12,
+    "fields": { "name": "Combo", "description": "Tiết kiệm", "created_at": "2026-01-02T08:11:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 1,
+    "fields": { "name": "Tôm hùm", "quantity": 10, "unit": "kg", "created_at": "2026-01-03T08:00:00Z", "last_updated": "2026-01-03T08:00:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 2,
+    "fields": { "name": "Cua thịt", "quantity": 15, "unit": "kg", "created_at": "2026-01-03T08:01:00Z", "last_updated": "2026-01-03T08:01:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 3,
+    "fields": { "name": "Tỏi", "quantity": 5, "unit": "kg", "created_at": "2026-01-03T08:02:00Z", "last_updated": "2026-01-03T08:02:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 4,
+    "fields": { "name": "Bơ lạt", "quantity": 2, "unit": "kg", "created_at": "2026-01-03T08:03:00Z", "last_updated": "2026-01-03T08:03:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 5,
+    "fields": { "name": "Gạo", "quantity": 50, "unit": "kg", "created_at": "2026-01-03T08:04:00Z", "last_updated": "2026-01-03T08:04:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 6,
+    "fields": { "name": "Dầu ăn", "quantity": 20, "unit": "lít", "created_at": "2026-01-03T08:05:00Z", "last_updated": "2026-01-03T08:05:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 7,
+    "fields": { "name": "Rau xà lách", "quantity": 10, "unit": "kg", "created_at": "2026-01-03T08:06:00Z", "last_updated": "2026-01-03T08:06:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 8,
+    "fields": { "name": "Mực lá", "quantity": 8, "unit": "kg", "created_at": "2026-01-03T08:07:00Z", "last_updated": "2026-01-03T08:07:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 9,
+    "fields": { "name": "Sườn non", "quantity": 12, "unit": "kg", "created_at": "2026-01-03T08:08:00Z", "last_updated": "2026-01-03T08:08:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 10,
+    "fields": { "name": "Hành lá", "quantity": 3, "unit": "kg", "created_at": "2026-01-03T08:09:00Z", "last_updated": "2026-01-03T08:09:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 11,
+    "fields": { "name": "Phô mai", "quantity": 5, "unit": "kg", "created_at": "2026-01-03T08:10:00Z", "last_updated": "2026-01-03T08:10:00Z" }
+  },
+  {
+    "model": "catalog.ingredient",
+    "pk": 12,
+    "fields": { "name": "Sả", "quantity": 4, "unit": "kg", "created_at": "2026-01-03T08:11:00Z", "last_updated": "2026-01-03T08:11:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 1,
+    "fields": { "category": 2, "name": "Tôm hùm nướng bơ tỏi", "description": "Tôm hùm tươi nướng bơ thơm lừng, phục vụ kèm bánh mì", "price": "850000", "status": "available", "is_featured": true, "created_at": "2026-01-04T08:00:00Z", "updated_at": "2026-01-04T08:00:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 2,
+    "fields": { "category": 2, "name": "Cua rang me", "description": "Cua thịt đầy sốt me chua ngọt đặc trưng", "price": "450000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:01:00Z", "updated_at": "2026-01-04T08:01:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 3,
+    "fields": { "category": 1, "name": "Gỏi ngó sen tôm thịt", "description": "Giòn mát, chua ngọt vừa miệng", "price": "120000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:02:00Z", "updated_at": "2026-01-04T08:02:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 4,
+    "fields": { "category": 3, "name": "Sườn nướng mật ong", "description": "Sườn non mềm ướp mật ong thấm vị", "price": "220000", "status": "available", "is_featured": true, "created_at": "2026-01-04T08:03:00Z", "updated_at": "2026-01-04T08:03:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 5,
+    "fields": { "category": 4, "name": "Lẩu hải sản thập cẩm", "description": "Tôm, mực, ngao, nghêu, cá trong nước dùng chua cay", "price": "350000", "status": "available", "is_featured": true, "created_at": "2026-01-04T08:04:00Z", "updated_at": "2026-01-04T08:04:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 6,
+    "fields": { "category": 7, "name": "Cơm chiên hải sản", "description": "Cơm tơi xào cùng tôm, mực và rau củ", "price": "95000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:05:00Z", "updated_at": "2026-01-04T08:05:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 7,
+    "fields": { "category": 8, "name": "Nước cam ép tươi", "description": "Cam Việt Nam nguyên chất, không đường", "price": "45000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:06:00Z", "updated_at": "2026-01-04T08:06:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 8,
+    "fields": { "category": 5, "name": "Mực xào sa tế", "description": "Mực lá xào cay nồng với sa tế đặc biệt", "price": "180000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:07:00Z", "updated_at": "2026-01-04T08:07:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 9,
+    "fields": { "category": 10, "name": "Vang đỏ Pháp Bordeaux", "description": "Phù hợp với hải sản và món nướng", "price": "1200000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:08:00Z", "updated_at": "2026-01-04T08:08:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 10,
+    "fields": { "category": 11, "name": "Bia Heineken chai", "description": "Bia lạnh 330ml", "price": "35000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:09:00Z", "updated_at": "2026-01-04T08:09:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 11,
+    "fields": { "category": 9, "name": "Chè hạt sen nhãn nhục", "description": "Thanh mát, ngọt dịu", "price": "30000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:10:00Z", "updated_at": "2026-01-04T08:10:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 12,
+    "fields": { "category": 12, "name": "Combo lẩu nướng 4 người", "description": "Lẩu hải sản + 2 món nướng + 4 ly nước", "price": "750000", "status": "available", "is_featured": true, "created_at": "2026-01-04T08:11:00Z", "updated_at": "2026-01-04T08:11:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 13,
+    "fields": { "category": 2, "name": "Ghẹ hấp sả", "description": "Ghẹ biển tươi hấp sả gừng thơm", "price": "280000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:12:00Z", "updated_at": "2026-01-04T08:12:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 14,
+    "fields": { "category": 2, "name": "Tôm sú nướng muối ớt", "description": "Tôm sú to nướng than với muối ớt chanh", "price": "320000", "status": "available", "is_featured": true, "created_at": "2026-01-04T08:13:00Z", "updated_at": "2026-01-04T08:13:00Z" }
+  },
+  {
+    "model": "catalog.menuitem",
+    "pk": 15,
+    "fields": { "category": 5, "name": "Nghêu xào sả ớt", "description": "Nghêu tươi xào thơm nồng", "price": "95000", "status": "available", "is_featured": false, "created_at": "2026-01-04T08:14:00Z", "updated_at": "2026-01-04T08:14:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 1,
+    "fields": { "menu_item": 1, "ingredient": 1, "quantity_needed": 1.0, "created_at": "2026-01-05T08:00:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 2,
+    "fields": { "menu_item": 1, "ingredient": 3, "quantity_needed": 0.05, "created_at": "2026-01-05T08:01:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 3,
+    "fields": { "menu_item": 1, "ingredient": 4, "quantity_needed": 0.1, "created_at": "2026-01-05T08:02:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 4,
+    "fields": { "menu_item": 2, "ingredient": 2, "quantity_needed": 1.2, "created_at": "2026-01-05T08:03:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 5,
+    "fields": { "menu_item": 4, "ingredient": 9, "quantity_needed": 0.5, "created_at": "2026-01-05T08:04:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 6,
+    "fields": { "menu_item": 5, "ingredient": 1, "quantity_needed": 0.3, "created_at": "2026-01-05T08:05:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 7,
+    "fields": { "menu_item": 5, "ingredient": 2, "quantity_needed": 0.3, "created_at": "2026-01-05T08:06:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 8,
+    "fields": { "menu_item": 6, "ingredient": 5, "quantity_needed": 0.2, "created_at": "2026-01-05T08:07:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 9,
+    "fields": { "menu_item": 8, "ingredient": 8, "quantity_needed": 0.4, "created_at": "2026-01-05T08:08:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 10,
+    "fields": { "menu_item": 12, "ingredient": 1, "quantity_needed": 0.5, "created_at": "2026-01-05T08:09:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 11,
+    "fields": { "menu_item": 12, "ingredient": 9, "quantity_needed": 0.5, "created_at": "2026-01-05T08:10:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 12,
+    "fields": { "menu_item": 6, "ingredient": 10, "quantity_needed": 0.02, "created_at": "2026-01-05T08:11:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 13,
+    "fields": { "menu_item": 13, "ingredient": 12, "quantity_needed": 0.1, "created_at": "2026-01-05T08:12:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 14,
+    "fields": { "menu_item": 14, "ingredient": 3, "quantity_needed": 0.05, "created_at": "2026-01-05T08:13:00Z" }
+  },
+  {
+    "model": "catalog.inventory",
+    "pk": 15,
+    "fields": { "menu_item": 15, "ingredient": 12, "quantity_needed": 0.08, "created_at": "2026-01-05T08:14:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 1,
+    "fields": { "name": "Nguyễn Văn An", "phone": "0901111001", "email": "an.nguyen@gmail.com", "address": "12 Lý Tự Trọng, Q1, TP.HCM", "points": 150, "created_at": "2026-01-10T10:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 2,
+    "fields": { "name": "Trần Thị Bích", "phone": "0901111002", "email": "bich.tran@gmail.com", "address": "45 Nguyễn Huệ, Q1, TP.HCM", "points": 320, "created_at": "2026-01-11T11:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 3,
+    "fields": { "name": "Lê Minh Châu", "phone": "0901111003", "email": "chau.le@gmail.com", "address": "78 Đinh Tiên Hoàng, Q3, TP.HCM", "points": 80, "created_at": "2026-01-12T09:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 4,
+    "fields": { "name": "Phạm Quốc Dũng", "phone": "0901111004", "email": "dung.pham@gmail.com", "address": "23 Võ Văn Tần, Q3, TP.HCM", "points": 500, "created_at": "2026-01-13T14:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 5,
+    "fields": { "name": "Hoàng Thị Em", "phone": "0901111005", "email": "em.hoang@gmail.com", "address": "99 Cách Mạng Tháng 8, Q10, TP.HCM", "points": 0, "created_at": "2026-01-14T15:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 6,
+    "fields": { "name": "Võ Thanh Phong", "phone": "0901111006", "email": "phong.vo@gmail.com", "address": "34 Hai Bà Trưng, Q1, TP.HCM", "points": 210, "created_at": "2026-01-15T10:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 7,
+    "fields": { "name": "Đặng Ngọc Hoa", "phone": "0901111007", "email": "hoa.dang@gmail.com", "address": "56 Phan Đình Phùng, Phú Nhuận, TP.HCM", "points": 90, "created_at": "2026-01-16T11:30:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 8,
+    "fields": { "name": "Bùi Văn Khánh", "phone": "0901111008", "email": "khanh.bui@gmail.com", "address": "11 Nguyễn Đình Chiểu, Q1, TP.HCM", "points": 440, "created_at": "2026-01-17T09:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 9,
+    "fields": { "name": "Lý Thị Lan", "phone": "0901111009", "email": "lan.ly@gmail.com", "address": "67 Lê Lợi, Q1, TP.HCM", "points": 30, "created_at": "2026-02-01T10:00:00Z" }
+  },
+  {
+    "model": "customers.customer",
+    "pk": 10,
+    "fields": { "name": "Trương Minh Tuấn", "phone": "0901111010", "email": "tuan.truong@gmail.com", "address": "8 Bến Nghé, Q4, TP.HCM", "points": 175, "created_at": "2026-02-05T14:00:00Z" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 1,
+    "fields": { "number": 1, "capacity": 4, "status": "occupied", "zone": "indoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 2,
+    "fields": { "number": 2, "capacity": 4, "status": "occupied", "zone": "indoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 3,
+    "fields": { "number": 3, "capacity": 6, "status": "available", "zone": "indoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 4,
+    "fields": { "number": 4, "capacity": 6, "status": "available", "zone": "indoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 5,
+    "fields": { "number": 5, "capacity": 2, "status": "occupied", "zone": "outdoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 6,
+    "fields": { "number": 6, "capacity": 2, "status": "available", "zone": "outdoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 7,
+    "fields": { "number": 7, "capacity": 8, "status": "reserved", "zone": "vip" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 8,
+    "fields": { "number": 8, "capacity": 8, "status": "available", "zone": "vip" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 9,
+    "fields": { "number": 9, "capacity": 4, "status": "cleaning", "zone": "outdoor" }
+  },
+  {
+    "model": "operations.table",
+    "pk": 10,
+    "fields": { "number": 10, "capacity": 4, "status": "available", "zone": "indoor" }
+  },
+  {
+    "model": "operations.order",
+    "pk": 1,
+    "fields": {
+      "table": 1, "customer": 1, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "cash", "discount": "0.00",
+      "note": "Khách yêu cầu không cay",
+      "created_at": "2026-04-01T11:30:00Z", "updated_at": "2026-04-01T13:00:00Z", "paid_at": "2026-04-01T13:00:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 2,
+    "fields": {
+      "table": 2, "customer": 2, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "transfer", "discount": "10.00",
+      "note": "Sinh nhật khách, tặng tráng miệng",
+      "created_at": "2026-04-02T18:00:00Z", "updated_at": "2026-04-02T19:45:00Z", "paid_at": "2026-04-02T19:45:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 3,
+    "fields": {
+      "table": 3, "customer": null, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "momo", "discount": "0.00",
+      "note": "",
+      "created_at": "2026-04-03T12:15:00Z", "updated_at": "2026-04-03T13:30:00Z", "paid_at": "2026-04-03T13:30:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 4,
+    "fields": {
+      "table": 7, "customer": 4, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "card", "discount": "5.00",
+      "note": "Khách VIP, ưu tiên phục vụ, cần hoá đơn đỏ",
+      "created_at": "2026-04-05T19:00:00Z", "updated_at": "2026-04-05T21:30:00Z", "paid_at": "2026-04-05T21:30:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 5,
+    "fields": {
+      "table": 5, "customer": null, "staff": 3, "created_by": 3,
+      "status": "cancelled", "payment_method": "", "discount": "0.00",
+      "note": "Khách huỷ do chờ lâu",
+      "created_at": "2026-04-06T12:00:00Z", "updated_at": "2026-04-06T12:20:00Z", "paid_at": null
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 6,
+    "fields": {
+      "table": 6, "customer": 5, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "vnpay", "discount": "0.00",
+      "note": "",
+      "created_at": "2026-04-08T17:30:00Z", "updated_at": "2026-04-08T19:00:00Z", "paid_at": "2026-04-08T19:00:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 7,
+    "fields": {
+      "table": 1, "customer": 6, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "cash", "discount": "15.00",
+      "note": "Khách quen, giảm giá đặc biệt",
+      "created_at": "2026-04-10T11:00:00Z", "updated_at": "2026-04-10T12:30:00Z", "paid_at": "2026-04-10T12:30:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 8,
+    "fields": {
+      "table": 2, "customer": null, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "momo", "discount": "0.00",
+      "note": "Ăn trưa nhanh",
+      "created_at": "2026-04-11T13:00:00Z", "updated_at": "2026-04-11T14:00:00Z", "paid_at": "2026-04-11T14:00:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 9,
+    "fields": {
+      "table": 7, "customer": 7, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "transfer", "discount": "10.00",
+      "note": "Đặt tiệc công ty 10 người, cần hoá đơn đỏ",
+      "created_at": "2026-04-12T18:30:00Z", "updated_at": "2026-04-12T21:00:00Z", "paid_at": "2026-04-12T21:00:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 10,
+    "fields": {
+      "table": 4, "customer": null, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "cash", "discount": "0.00",
+      "note": "Không dùng đồ nhựa",
+      "created_at": "2026-04-14T12:00:00Z", "updated_at": "2026-04-14T13:15:00Z", "paid_at": "2026-04-14T13:15:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 11,
+    "fields": {
+      "table": 8, "customer": 8, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "card", "discount": "5.00",
+      "note": "Dị ứng tôm, không dùng món có tôm",
+      "created_at": "2026-04-15T19:00:00Z", "updated_at": "2026-04-15T20:30:00Z", "paid_at": "2026-04-15T20:30:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 12,
+    "fields": {
+      "table": 3, "customer": null, "staff": 4, "created_by": 4,
+      "status": "cancelled", "payment_method": "", "discount": "0.00",
+      "note": "Khách đặt bàn nhưng không đến",
+      "created_at": "2026-04-16T18:00:00Z", "updated_at": "2026-04-16T18:10:00Z", "paid_at": null
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 13,
+    "fields": {
+      "table": 5, "customer": 9, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "vnpay", "discount": "0.00",
+      "note": "Kỷ niệm ngày cưới, cần nến và hoa",
+      "created_at": "2026-04-17T19:30:00Z", "updated_at": "2026-04-17T21:15:00Z", "paid_at": "2026-04-17T21:15:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 14,
+    "fields": {
+      "table": 6, "customer": 10, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "cash", "discount": "0.00",
+      "note": "",
+      "created_at": "2026-04-18T12:30:00Z", "updated_at": "2026-04-18T13:45:00Z", "paid_at": "2026-04-18T13:45:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 15,
+    "fields": {
+      "table": 1, "customer": 3, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "momo", "discount": "0.00",
+      "note": "Ít muối",
+      "created_at": "2026-04-19T18:00:00Z", "updated_at": "2026-04-19T19:30:00Z", "paid_at": "2026-04-19T19:30:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 16,
+    "fields": {
+      "table": 2, "customer": 1, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "card", "discount": "10.00",
+      "note": "Khách sinh nhật lần 2 trong tháng",
+      "created_at": "2026-04-20T19:00:00Z", "updated_at": "2026-04-20T20:45:00Z", "paid_at": "2026-04-20T20:45:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 17,
+    "fields": {
+      "table": 9, "customer": null, "staff": 3, "created_by": 3,
+      "status": "paid", "payment_method": "cash", "discount": "0.00",
+      "note": "",
+      "created_at": "2026-04-21T11:30:00Z", "updated_at": "2026-04-21T12:30:00Z", "paid_at": "2026-04-21T12:30:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 18,
+    "fields": {
+      "table": 10, "customer": 6, "staff": 4, "created_by": 4,
+      "status": "paid", "payment_method": "transfer", "discount": "0.00",
+      "note": "Khách đặt trước, bàn ngoài trời",
+      "created_at": "2026-04-22T18:30:00Z", "updated_at": "2026-04-22T20:00:00Z", "paid_at": "2026-04-22T20:00:00Z"
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 19,
+    "fields": {
+      "table": 4, "customer": 2, "staff": 3, "created_by": 3,
+      "status": "pending_payment", "payment_method": "", "discount": "0.00",
+      "note": "Khách đang chờ thanh toán",
+      "created_at": "2026-04-25T19:00:00Z", "updated_at": "2026-04-25T20:30:00Z", "paid_at": null
+    }
+  },
+  {
+    "model": "operations.order",
+    "pk": 20,
+    "fields": {
+      "table": 1, "customer": null, "staff": 4, "created_by": 4,
+      "status": "open", "payment_method": "", "discount": "0.00",
+      "note": "Khách đang ăn",
+      "created_at": "2026-04-25T20:00:00Z", "updated_at": "2026-04-25T20:00:00Z", "paid_at": null
+    }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 1,
+    "fields": { "order": 1, "menu_item": 2, "quantity": 1, "unit_price": "450000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 2,
+    "fields": { "order": 1, "menu_item": 6, "quantity": 2, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 3,
+    "fields": { "order": 1, "menu_item": 10, "quantity": 4, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 4,
+    "fields": { "order": 2, "menu_item": 1, "quantity": 1, "unit_price": "850000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 5,
+    "fields": { "order": 2, "menu_item": 3, "quantity": 1, "unit_price": "120000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 6,
+    "fields": { "order": 2, "menu_item": 11, "quantity": 2, "unit_price": "30000", "status": "served", "note": "Tặng sinh nhật" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 7,
+    "fields": { "order": 3, "menu_item": 5, "quantity": 1, "unit_price": "350000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 8,
+    "fields": { "order": 3, "menu_item": 7, "quantity": 2, "unit_price": "45000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 9,
+    "fields": { "order": 4, "menu_item": 12, "quantity": 2, "unit_price": "750000", "status": "served", "note": "Phần cho 4 người x2 bàn" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 10,
+    "fields": { "order": 4, "menu_item": 9, "quantity": 1, "unit_price": "1200000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 11,
+    "fields": { "order": 4, "menu_item": 10, "quantity": 6, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 12,
+    "fields": { "order": 6, "menu_item": 14, "quantity": 1, "unit_price": "320000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 13,
+    "fields": { "order": 6, "menu_item": 15, "quantity": 1, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 14,
+    "fields": { "order": 6, "menu_item": 10, "quantity": 3, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 15,
+    "fields": { "order": 7, "menu_item": 2, "quantity": 1, "unit_price": "450000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 16,
+    "fields": { "order": 7, "menu_item": 8, "quantity": 1, "unit_price": "180000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 17,
+    "fields": { "order": 7, "menu_item": 6, "quantity": 2, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 18,
+    "fields": { "order": 8, "menu_item": 6, "quantity": 1, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 19,
+    "fields": { "order": 8, "menu_item": 7, "quantity": 2, "unit_price": "45000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 20,
+    "fields": { "order": 9, "menu_item": 12, "quantity": 2, "unit_price": "750000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 21,
+    "fields": { "order": 9, "menu_item": 9, "quantity": 2, "unit_price": "1200000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 22,
+    "fields": { "order": 9, "menu_item": 10, "quantity": 10, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 23,
+    "fields": { "order": 10, "menu_item": 13, "quantity": 1, "unit_price": "280000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 24,
+    "fields": { "order": 10, "menu_item": 3, "quantity": 1, "unit_price": "120000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 25,
+    "fields": { "order": 11, "menu_item": 2, "quantity": 1, "unit_price": "450000", "status": "served", "note": "Không tôm" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 26,
+    "fields": { "order": 11, "menu_item": 4, "quantity": 1, "unit_price": "220000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 27,
+    "fields": { "order": 11, "menu_item": 7, "quantity": 2, "unit_price": "45000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 28,
+    "fields": { "order": 13, "menu_item": 1, "quantity": 1, "unit_price": "850000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 29,
+    "fields": { "order": 13, "menu_item": 3, "quantity": 1, "unit_price": "120000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 30,
+    "fields": { "order": 13, "menu_item": 11, "quantity": 2, "unit_price": "30000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 31,
+    "fields": { "order": 14, "menu_item": 5, "quantity": 1, "unit_price": "350000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 32,
+    "fields": { "order": 14, "menu_item": 6, "quantity": 2, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 33,
+    "fields": { "order": 15, "menu_item": 14, "quantity": 2, "unit_price": "320000", "status": "served", "note": "Ít muối" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 34,
+    "fields": { "order": 15, "menu_item": 15, "quantity": 1, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 35,
+    "fields": { "order": 15, "menu_item": 10, "quantity": 4, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 36,
+    "fields": { "order": 16, "menu_item": 12, "quantity": 1, "unit_price": "750000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 37,
+    "fields": { "order": 16, "menu_item": 9, "quantity": 1, "unit_price": "1200000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 38,
+    "fields": { "order": 17, "menu_item": 6, "quantity": 2, "unit_price": "95000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 39,
+    "fields": { "order": 17, "menu_item": 7, "quantity": 2, "unit_price": "45000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 40,
+    "fields": { "order": 18, "menu_item": 1, "quantity": 1, "unit_price": "850000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 41,
+    "fields": { "order": 18, "menu_item": 13, "quantity": 1, "unit_price": "280000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 42,
+    "fields": { "order": 18, "menu_item": 10, "quantity": 4, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 43,
+    "fields": { "order": 19, "menu_item": 5, "quantity": 1, "unit_price": "350000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 44,
+    "fields": { "order": 19, "menu_item": 8, "quantity": 1, "unit_price": "180000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 45,
+    "fields": { "order": 19, "menu_item": 10, "quantity": 2, "unit_price": "35000", "status": "served", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 46,
+    "fields": { "order": 20, "menu_item": 2, "quantity": 1, "unit_price": "450000", "status": "preparing", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 47,
+    "fields": { "order": 20, "menu_item": 15, "quantity": 1, "unit_price": "95000", "status": "pending", "note": "" }
+  },
+  {
+    "model": "operations.orderitem",
+    "pk": 48,
+    "fields": { "order": 20, "menu_item": 10, "quantity": 2, "unit_price": "35000", "status": "served", "note": "" }
+  }
+]

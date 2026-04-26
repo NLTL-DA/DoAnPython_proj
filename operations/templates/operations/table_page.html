@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn Ăn - Quản Lý Nhà Hàng</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --sidebar-w:240px; --bg:#eef5f9; --white:#ffffff;
+            --primary:#0077b6; --primary-dark:#023e8a;
+            --green:#059669; --green-bg:#d1fae5;
+            --orange:#f97316; --orange-bg:#ffedd5;
+            --blue:#0ea5e9; --blue-bg:#e0f2fe;
+            --red:#ef4444; --red-bg:#fee2e2;
+            --yellow:#d97706; --yellow-bg:#fef3c7;
+            --purple:#7c3aed; --purple-bg:#ede9fe;
+            --text:#0f172a; --muted:#64748b;
+            --border:#cbd5e1; --sidebar-bg:#ffffff; --active-nav:#e0f2fe;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text); display:flex; height:100vh; overflow:hidden; }
+        .sidebar { width:var(--sidebar-w); background:var(--sidebar-bg); display:flex; flex-direction:column; padding:1.5rem 1rem; border-right:1px solid var(--border); flex-shrink:0; }
+        .brand { display:flex; align-items:center; gap:.6rem; padding:.25rem .75rem 1.75rem; }
+        .brand-icon { width:36px; height:36px; background:linear-gradient(135deg,#0077b6,#48cae4); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:white; }
+        .brand-name { font-weight:700; font-size:1.15rem; color:var(--text); letter-spacing:-.3px; }
+        .nav-section { flex:1; }
+        .nav-item { display:flex; align-items:center; gap:.75rem; padding:.65rem .9rem; border-radius:10px; color:var(--muted); font-size:.9rem; font-weight:500; cursor:pointer; transition:all .15s; text-decoration:none; margin-bottom:2px; }
+        .nav-item:hover { background:var(--bg); color:var(--text); }
+        .nav-item.active { background:var(--active-nav); color:var(--primary-dark); }
+        .nav-item i { font-size:1.1rem; width:20px; text-align:center; }
+        .sidebar-footer { border-top:1px solid var(--border); padding-top:1rem; }
+        .user-info { display:flex; align-items:center; gap:.7rem; padding:.5rem .9rem; border-radius:10px; }
+        .avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#f97316,#fb923c); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:600; font-size:.85rem; flex-shrink:0; }
+        .user-name { font-weight:600; font-size:.85rem; }
+        .user-role { font-size:.75rem; color:var(--muted); }
+        .logout-btn { display:flex; align-items:center; gap:.75rem; padding:.65rem .9rem; border-radius:10px; color:var(--muted); font-size:.9rem; font-weight:500; cursor:pointer; transition:all .15s; text-decoration:none; margin-top:2px; }
+        .logout-btn:hover { background:#fff0f0; color:#e05c5c; }
+
+        .main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+        .topbar { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 2rem 1rem; background:var(--bg); }
+        .topbar h1 { font-size:1.6rem; font-weight:700; letter-spacing:-.5px; color:var(--text); margin:0; }
+        .page-content { flex:1; overflow-y:auto; padding:0 2rem 2rem; }
+        .page-content::-webkit-scrollbar { width:6px; }
+        .page-content::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+
+        .kpi-card { background:var(--white); border-radius:16px; padding:1.5rem; border:1px solid var(--border); display:flex; align-items:center; gap:1.2rem; transition:transform .2s; height:100%; }
+        .kpi-card:hover { transform:translateY(-3px); box-shadow:0 8px 15px rgba(0,119,182,.08); }
+        .kpi-icon { width:55px; height:55px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; flex-shrink:0; }
+        .kpi-title { font-size:.85rem; color:var(--muted); font-weight:600; text-transform:uppercase; margin-bottom:.3rem; }
+        .kpi-value { font-size:1.4rem; font-weight:800; color:var(--text); }
+        .kpi-subtext { font-size:.75rem; font-weight:600; margin-top:.2rem; }
+
+        .content-box { background:var(--white); border-radius:16px; padding:1.5rem; border:1px solid var(--border); margin-top:1.5rem; }
+
+        .legend { display:flex; gap:1.2rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+        .legend-item { display:flex; align-items:center; gap:.4rem; font-size:.82rem; color:var(--muted); font-weight:500; }
+        .legend-dot { width:12px; height:12px; border-radius:3px; }
+
+        .zone-label { font-size:.8rem; font-weight:700; text-transform:uppercase; color:var(--muted); letter-spacing:.5px; margin:1rem 0 .75rem; }
+
+        .table-card {
+            background:#fff; border:2px solid var(--border); border-radius:14px;
+            padding:1.1rem; text-align:center; cursor:pointer;
+            transition:all .2s; position:relative; min-height:120px;
+            display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.3rem;
+        }
+        .table-card:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,.08); }
+        .table-card.available { border-color:#e2e8f0; }
+        .table-card.occupied { border-color:var(--blue); background:var(--blue-bg); }
+        .table-card.reserved { border-color:var(--yellow); background:var(--yellow-bg); }
+        .table-card.cleaning { border-color:var(--purple); background:var(--purple-bg); }
+
+        .table-number { font-size:1.4rem; font-weight:800; }
+        .table-capacity { font-size:.78rem; color:var(--muted); }
+        .table-status-text { font-size:.75rem; font-weight:600; margin-top:.2rem; }
+        .table-card.available .table-number { color:var(--text); }
+        .table-card.occupied .table-number { color:var(--blue); }
+        .table-card.reserved .table-number { color:var(--yellow); }
+        .table-card.cleaning .table-number { color:var(--purple); }
+
+        .table-icon { font-size:1.3rem; margin-bottom:.2rem; }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon">🍽</div>
+        <span class="brand-name">NhàHàng</span>
+    </div>
+    <nav class="nav-section">
+        <a href="/dashboard/" class="nav-item"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+        <a href="/catalog/" class="nav-item"><i class="bi bi-box-seam"></i> Kho Hàng</a>
+        <a href="/operations/" class="nav-item"><i class="bi bi-receipt"></i> Đơn Hàng</a>
+        <a href="/operations/table/" class="nav-item active"><i class="bi bi-grid"></i> Bàn Ăn</a>
+        <a href="/admin/" class="nav-item"><i class="bi bi-gear"></i> Cài Đặt</a>
+        <a href="/" class="nav-item"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+    </nav>
+    <div class="sidebar-footer">
+        <div class="user-info">
+            <div class="avatar">GS</div>
+            <div>
+                <div class="user-name">{{ request.user.get_full_name }}</div>
+                <div class="user-role">{{ request.user.staff_profile.get_role_display }}</div>
+            </div>
+        </div>
+        <a href="#" class="logout-btn"><i class="bi bi-box-arrow-right"></i> Đăng Xuất</a>
+    </div>
+</aside>
+
+<main class="main">
+    <div class="topbar">
+        <h1>Bàn Ăn</h1>
+        <button class="btn btn-primary btn-sm d-flex align-items-center gap-2" style="border-radius:10px;font-weight:600;padding:.5rem 1.1rem;">
+            <i class="bi bi-plus-lg"></i> Thêm Bàn
+        </button>
+    </div>
+
+    <div class="page-content">
+        <div class="row g-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background:#f1f5f9;color:var(--muted)"><i class="bi bi-grid-3x3-gap"></i></div>
+                    <div>
+                        <div class="kpi-title">Tổng Số Bàn</div>
+                        <div class="kpi-value">{{ total_tables }}</div>
+                        <div class="kpi-subtext text-muted">Toàn nhà hàng</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background:var(--blue-bg);color:var(--blue)"><i class="bi bi-people-fill"></i></div>
+                    <div>
+                        <div class="kpi-title">Đang Phục Vụ</div>
+                        <div class="kpi-value" style="color:var(--blue)">{{ occupied_tables }}</div>
+                        <div class="kpi-subtext" style="color:var(--blue)">Bàn có khách</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background:var(--green-bg);color:var(--green)"><i class="bi bi-check-circle"></i></div>
+                    <div>
+                        <div class="kpi-title">Còn Trống</div>
+                        <div class="kpi-value" style="color:var(--green)">{{ available_tables }}</div>
+                        <div class="kpi-subtext" style="color:var(--green)">Sẵn sàng đón khách</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="background:var(--yellow-bg);color:var(--yellow)"><i class="bi bi-calendar-check"></i></div>
+                    <div>
+                        <div class="kpi-title">Đã Đặt Trước</div>
+                        <div class="kpi-value" style="color:var(--yellow)">{{ reserved_tables }}</div>
+                        <div class="kpi-subtext" style="color:var(--yellow)">Reservation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <div class="legend">
+                <div class="legend-item"><div class="legend-dot" style="background:#e2e8f0;border:2px solid #cbd5e1;"></div>Trống</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--blue-bg);border:2px solid var(--blue);"></div>Đang phục vụ</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--yellow-bg);border:2px solid var(--yellow);"></div>Đã đặt trước</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--purple-bg);border:2px solid var(--purple);"></div>Đang dọn</div>
+            </div>
+
+            {% for zone, zone_tables in tables_by_zone.items %}
+            <div class="zone-label">
+                {% if zone == 'indoor' %}🏠 Trong Nhà
+                {% elif zone == 'outdoor' %}🌿 Ngoài Trời
+                {% elif zone == 'vip' %}⭐ VIP
+                {% elif zone == 'bar' %}🍸 Quầy Bar
+                {% else %}{{ zone }}{% endif %}
+            </div>
+            <div class="row g-3 mb-3">
+                {% for table in zone_tables %}
+                <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                    <!-- <div class="table-card {{ table.status }}" onclick="selectTable({{ table.id }})"> -->
+                        <div class="table-icon">
+                            {% if table.status == 'available' %}🟢
+                            {% elif table.status == 'occupied' %}🔵
+                            {% elif table.status == 'reserved' %}🟡
+                            {% else %}🟣{% endif %}
+                        </div>
+                        <div class="table-number">Bàn {{ table.number }}</div>
+                        <div class="table-capacity"><i class="bi bi-people"></i> {{ table.capacity }} người</div>
+                        <div class="table-status-text">{{ table.get_status_display }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% empty %}
+            <p class="text-muted text-center py-4">Chưa có bàn nào</p>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function selectTable(id) {
+        // Navigate to table detail or open order modal
+        console.log('Selected table:', id);
+    }
+</script>
+</body>
+</html>
