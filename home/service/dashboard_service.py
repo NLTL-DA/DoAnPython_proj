@@ -1,9 +1,9 @@
 # home/dashboard_service.py
 from operations.models import Order, Table
-import datetime
+from django.utils import timezone
 
 def get_dashboard_data():
-    now = datetime.datetime.now()
+    now = timezone.now()
     first_day = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
     
     monthly_orders = Order.objects.filter(created_at__gte=first_day)

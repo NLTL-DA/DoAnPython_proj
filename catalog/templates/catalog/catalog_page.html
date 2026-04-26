@@ -87,13 +87,12 @@
         <a href="/dashboard/" class="nav-item"><i class="bi bi-grid-1x2"></i> Dashboard</a>
         <a href="/catalog/" class="nav-item active"><i class="bi bi-box-seam"></i> Kho Hàng</a>
         <a href="/operations/" class="nav-item"><i class="bi bi-receipt"></i> Đơn Hàng</a>
-        <a href="operations/tables/" class="nav-item"><i class="bi bi-grid"></i> Bàn Ăn</a>
+        <a href="/operations/tables/" class="nav-item"><i class="bi bi-grid"></i> Bàn Ăn</a>
         <a href="/admin/" class="nav-item"><i class="bi bi-gear"></i> Cài Đặt</a>
         <a href="/" class="nav-item"><i class="bi bi-box-arrow-in-right"></i> Login</a>
     </nav>
     <div class="sidebar-footer">
         <div class="user-info">
-            <div class="avatar">GS</div>
             <div>
                 <div class="user-name">{{ request.user.get_full_name }}</div>
                 <div class="user-role">{{ request.user.staff_profile.get_role_display }}</div>
@@ -128,9 +127,23 @@
                 <div class="kpi-card">
                     <div class="kpi-icon" style="background:var(--green-bg);color:var(--green)"><i class="bi bi-check-circle"></i></div>
                     <div>
-                        <div class="kpi-title">Đủ Hàng</div>
-                        <div class="kpi-value" style="color:var(--green)">{{ ok_count }}</div>
-                        <div class="kpi-subtext" style="color:var(--green)">Còn đủ dùng</div>
+                        <div class="kpi-title">Kiểm tra số lượng</div>
+                            {% if out_of_stock_count == 0 and low_stock_count == 0 %}
+                                <div class="kpi-subtext" style="color:var(--green)">
+                                    Còn đủ dùng
+                                </div>
+                                <div class="kpi-value" style="color:var(--green)">
+                                    {{ total_ingredients }}
+                                </div>
+                            {% elif out_of_stock_count > 0 %}
+                                <div class="kpi-subtext" style="color:var(--red)">
+                                    Thiếu {{ out_of_stock_count }} nguyên liệu
+                                </div>
+                            {% else %}
+                                <div class="kpi-subtext" style="color:var(--orange)">
+                                    Không đủ nguyên liệu
+                                </div>
+                            {% endif %}
                     </div>
                 </div>
             </div>
@@ -139,7 +152,7 @@
                     <div class="kpi-icon" style="background:var(--orange-bg);color:var(--orange)"><i class="bi bi-exclamation-triangle"></i></div>
                     <div>
                         <div class="kpi-title">Sắp Hết</div>
-                        <div class="kpi-value" style="color:var(--orange)">{{ low_count }}</div>
+                        <div class="kpi-value" style="color:var(--orange)">{{ low_stock_count }}</div>
                         <div class="kpi-subtext" style="color:var(--orange)">Cần nhập thêm</div>
                     </div>
                 </div>
@@ -149,7 +162,7 @@
                     <div class="kpi-icon" style="background:var(--red-bg);color:var(--red)"><i class="bi bi-x-circle"></i></div>
                     <div>
                         <div class="kpi-title">Hết Hàng</div>
-                        <div class="kpi-value" style="color:var(--red)">{{ out_count }}</div>
+                        <div class="kpi-value" style="color:var(--red)">{{ out_of_stock_count }}</div>
                         <div class="kpi-subtext" style="color:var(--red)">Cần nhập gấp</div>
                     </div>
                 </div>
@@ -221,7 +234,14 @@
             </div>
         </div>
     </div>
+<div>
+    Total: {{ total }} <br>
+    Out: {{ out_of_stock }} <br>
+    Low: {{ low_stock }}
+</div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+
+</script>
 </body>
 </html>
