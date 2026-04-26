@@ -1,5 +1,4 @@
 # Khong push cac files nay len github
-db.sqlite3         
 __pycache__/
 *.pyc
 .env              
